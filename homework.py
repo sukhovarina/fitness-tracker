@@ -71,10 +71,10 @@ class Running(Training):
         super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
-        return (self.coeff_calorie_1 *
-                self.get_mean_speed() - self.coeff_calorie_2) * \
-               self.weight / self.M_IN_KM * \
-               self.duration * 60
+        return ((self.coeff_calorie_1
+                * self.get_mean_speed() - self.coeff_calorie_2)
+                * self.weight / self.M_IN_KM
+                * self.duration * 60)
 
 
 class SportsWalking(Training):
@@ -93,10 +93,10 @@ class SportsWalking(Training):
         super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
-        return (self.coeff_calorie_1 * self.weight +
-                (self.get_mean_speed() ** 2 // self.height) *
-                self.coeff_calorie_2 * self.weight) * \
-               self.duration * 60
+        return ((self.coeff_calorie_1 * self.weight
+                + (self.get_mean_speed() ** 2 // self.height)
+                * self.coeff_calorie_2 * self.weight)
+                * self.duration * 60)
 
 
 class Swimming(Training):
@@ -117,12 +117,12 @@ class Swimming(Training):
         super().__init__(action, duration, weight)
 
     def get_mean_speed(self) -> float:
-        return self.length_pool * self.count_pool / \
-               self.M_IN_KM / self.duration
+        return (self.length_pool * self.count_pool
+                / self.M_IN_KM / self.duration)
 
     def get_spent_calories(self) -> float:
-        return (self.get_mean_speed() + self.coeff_calorie_5) * \
-               self.coeff_calorie_6 * self.weight
+        return ((self.get_mean_speed() + self.coeff_calorie_5)
+                * self.coeff_calorie_6 * self.weight)
 
 
 def read_package(workout_type: str, data: list) -> Training:
