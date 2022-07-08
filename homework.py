@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
@@ -12,10 +13,10 @@ class InfoMessage:
 
     def get_message(self) -> str:
         return (f'Тип тренировки: {self.training_type}; '
-               f'Длительность: {format(self.duration, ".3f")} ч.; '
-               f'Дистанция: {format(self.distance, ".3f")} км; '
-               f'Ср. скорость: {format(self.speed, ".3f")} км/ч; '
-               f'Потрачено ккал: {format(self.calories, ".3f")}.')
+                f'Длительность: {format(self.duration, ".3f")} ч.; '
+                f'Дистанция: {format(self.distance, ".3f")} км; '
+                f'Ср. скорость: {format(self.speed, ".3f")} км/ч; '
+                f'Потрачено ккал: {format(self.calories, ".3f")}.')
 
 
 class Training:
@@ -44,8 +45,8 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        raise NotImplementedError('В классе %s. не поддерживается метод.' % (self.__class__.__name__))
-
+        raise NotImplementedError('В классе %s. не поддерживается метод.'
+                                  % (self.__class__.__name__))
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -72,7 +73,7 @@ class Running(Training):
 
     def get_spent_calories(self) -> float:
         return ((self.COEFF_CALORIE_1
-                * self.get_mean_speed() - self.COEFF_CALORIE_2)
+                 * self.get_mean_speed() - self.COEFF_CALORIE_2)
                 * self.weight / self.M_IN_KM
                 * self.duration * self.M_IN_HOUR)
 
@@ -95,8 +96,8 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         return ((self.COEFF_CALORIE_1 * self.weight
-                + (self.get_mean_speed() ** 2 // self.height)
-                * self.COEFF_CALORIE_2 * self.weight)
+                 + (self.get_mean_speed() ** 2 // self.height)
+                 * self.COEFF_CALORIE_2 * self.weight)
                 * self.duration * self.M_IN_HOUR)
 
 
