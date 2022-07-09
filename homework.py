@@ -135,6 +135,7 @@ def read_package(workout_type: str, data: list) -> Training:
                                   f'не существует класса.')
     return trainings[workout_type](*data)
 
+
 def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
