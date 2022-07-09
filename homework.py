@@ -68,12 +68,6 @@ class Running(Training):
     COEFF_CALORIE_1: int = 18
     COEFF_CALORIE_2: int = 20
 
-    def __init__(self,
-                 action: int,
-                 duration: float,
-                 weight: float) -> None:
-        super().__init__(action, duration, weight)
-
     def get_spent_calories(self) -> float:
         return ((self.COEFF_CALORIE_1
                  * self.get_mean_speed() - self.COEFF_CALORIE_2)
@@ -136,8 +130,10 @@ def read_package(workout_type: str, data: list) -> Training:
         'RUN': Running,
         'WLK': SportsWalking
     }
+    if trainings.get(workout_type) == None:
+        raise NotImplementedError(f'Для этого типа тренировки {workout_type} '
+                                  f'не существует класса.')
     return trainings[workout_type](*data)
-
 
 def main(training: Training) -> None:
     """Главная функция."""
