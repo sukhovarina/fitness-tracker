@@ -132,7 +132,7 @@ def read_package(workout_type: str, data: list) -> Training:
     }
     if trainings.get(workout_type) is None:
         raise ValueError(f'Для этого типа тренировки {workout_type} '
-                                  f'не существует класса.')
+                         f'не существует класса.')
     return trainings[workout_type](*data)
 
 
